@@ -3,6 +3,7 @@ import requests
 def deface_attack(target_url, html_file, api_key):
     try:
         response = requests.get(f"https://api.cloudflare.com/client/v4/zones?name={target_url}")
+        response.raise_for_status()
         zone_id = response.json()["result"][0]["id"]
 
         # Find vulnerabilities
